@@ -3,12 +3,14 @@
 #include <iostream>
 #include <string>
 
-class Table
+#include "Element.hpp"
+
+class Table : public Element
 {
 public:
 	Table(std::string title) : title(title) {};
 
-	void print()
+	void print() override
 	{
 		std::cout << "Table " << title << std::endl;
 	}
