@@ -3,12 +3,14 @@
 #include <iostream>
 #include <string>
 
-class Paragraph
+#include "Element.hpp"
+
+class Paragraph : public Element
 {
 public:
 	Paragraph(std::string text) : text(text) {};
 
-	void print()
+	void print() override
 	{
 		std::cout << "Paragraph " << text << std::endl;
 	}

@@ -4,10 +4,10 @@
 #include <string>
 #include <vector>
 
-#include "Chapter.hpp"
+#include "Section.hpp"
 #include "Author.hpp"
 
-class Book
+class Book : public Section
 {
 public:
 	Book(std::string name) : name(name) {};
@@ -15,20 +15,19 @@ public:
 	void print()
 	{
 		std::cout << "Book " << name << std::endl;
+
+		std::cout << "\nAuthors:\n";
+		for (auto& author : authors)
+			author.print();
+
+		std::cout << std::endl;
+		for (auto* content : contents)
+			content->print();
 	}
 
-	size_t createChapter(std::string name)
+	void addContent(Element* element)
 	{
-		Chapter chapter(name);
-		chapters.push_back(chapter);
-		return chapters.size() - 1UL;
-	}
-
-	Chapter& getChapter(size_t idx)
-	{
-		if (idx >= chapters.size())
-			throw 1;
-		return chapters[idx];
+		contents.push_back(element);
 	}
 
 	void addAuthor(const Author author)
@@ -38,6 +37,6 @@ public:
 
 private:
 	std::string name;
-	std::vector<Chapter> chapters;
 	std::vector<Author> authors;
+	std::vector<Element*> contents;
 };
