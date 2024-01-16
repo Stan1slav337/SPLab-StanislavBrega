@@ -1,7 +1,11 @@
 #pragma once
 
-class Element
+#include <string>
+
+#include "Visitee.hpp"
+
+class Element : public Visitee
 {
 public:
-	virtual void print() = 0;
+	virtual std::string get() const = 0;
 }; 

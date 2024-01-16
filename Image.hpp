@@ -13,7 +13,7 @@ public:
 	{
 		try 
 		{
-			std::this_thread::sleep_for(std::chrono::seconds(3));
+			//std::this_thread::sleep_for(std::chrono::seconds(3));
 		} 
 		catch(...)
 		{
@@ -21,10 +21,12 @@ public:
 		}
 	};
 
-	void print() override
+	std::string get() const override
 	{
-		std::cout << "Image " << name << std::endl;
+		return name;
 	}
+
+	void accept(Visitor&) override;
 
 private:
 	std::string name;

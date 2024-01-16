@@ -1,33 +1,19 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-
 #include "Element.hpp"
-#include "AlignStrategy.hpp"
 
 class Paragraph : public Element
 {
 public:
-	Paragraph(std::string text) : text(text), alignStrategy(nullptr) {};
+	Paragraph(std::string text) : text(text) {};
 
-	void print() override
+	std::string get() const override
 	{
-		if (alignStrategy == nullptr)
-		{
-			std::cout << "Normal " << text << std::endl;
-			return;
-		}
-
-		alignStrategy->render(text);
+		return text;
 	}
 
-	void setAlignStrategy(AlignStrategy* newStrategy)
-	{
-		alignStrategy = newStrategy;
-	}
+	void accept(Visitor&) override;
 
 private:
 	std::string text;
-	AlignStrategy* alignStrategy;
 };

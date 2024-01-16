@@ -13,13 +13,6 @@ class ImageProxy : public Element, public Picture
 public:
 	ImageProxy(std::string name) : name(name), image(nullptr) {};
 
-	void print() override
-	{
-		Image* loadedImg = loadImage();
-		loadedImg->print();
-	}
-
-private:
 	Image* loadImage()
 	{
 		if (image == nullptr)
@@ -29,6 +22,14 @@ private:
 		return image;
 	}
 
+	std::string get() const override
+	{
+		return name;
+	}
+
+	void accept(Visitor&) override;
+
+private:
 	std::string name;
 	Image* image;
 };

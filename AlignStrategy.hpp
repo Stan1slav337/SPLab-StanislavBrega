@@ -6,5 +6,5 @@
 class AlignStrategy
 {
 public:
-	virtual void render(std::string&) = 0;
+	virtual void render(std::string) = 0;
 };

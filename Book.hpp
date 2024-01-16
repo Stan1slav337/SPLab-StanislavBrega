@@ -12,19 +12,6 @@ class Book : public Section
 public:
 	Book(std::string name) : name(name) {};
 
-	void print()
-	{
-		std::cout << "Book " << name << std::endl;
-
-		std::cout << "\nAuthors:\n";
-		for (auto& author : authors)
-			author.print();
-
-		std::cout << std::endl;
-		for (auto* content : contents)
-			content->print();
-	}
-
 	void addContent(Element* element)
 	{
 		contents.push_back(element);
@@ -34,6 +21,23 @@ public:
 	{
 		authors.push_back(author);
 	}
+
+	std::vector<Author> getAuthors() const
+	{
+		return authors;
+	}
+
+	std::vector<Element*> getContents() const
+	{
+		return contents;
+	}
+
+	std::string get() const override
+	{
+		return name;
+	}
+
+	void accept(Visitor&) override;
 
 private:
 	std::string name;

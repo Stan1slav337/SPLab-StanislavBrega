@@ -14,18 +14,22 @@ protected:
 public:
 	Section(std::string name) : name(name) {};
 
-	void print() override
-	{
-		std::cout << name << std::endl;
-		
-		for (auto *element : elements)
-			element->print();
-	}
-
 	void add(Element* element)
 	{
 		elements.push_back(element);
 	}
+
+	std::vector<Element*> getElements() const
+	{
+		return elements;
+	}
+
+	std::string get() const override
+	{
+		return name;
+	}
+
+	void accept(Visitor&) override;
 
 private:
 	std::string name;

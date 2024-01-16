@@ -5,7 +5,7 @@
 class AlignLeft : public AlignStrategy
 {
 public:
-	void render(std::string& text)
+	void render(std::string text)
 	{
 		std::cout << text << std::endl;
 	}

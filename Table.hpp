@@ -10,10 +10,12 @@ class Table : public Element
 public:
 	Table(std::string title) : title(title) {};
 
-	void print() override
+	std::string get() const override
 	{
-		std::cout << "Table " << title << std::endl;
+		return title;
 	}
+
+	void accept(Visitor&) override;
 
 private:
 	std::string title;
